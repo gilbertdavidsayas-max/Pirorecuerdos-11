@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pirorecuerdos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+      position: relative;
+    }
+
+    /* Marca de agua */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: url('5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg') no-repeat center;
+      background-size: 400px;
+      opacity: 0.08;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Encabezado */
+    header {
+      background: #4b2a77;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    .logo-header {
+      height: 55px;
+      margin-right: 10px;
+      border-radius: 8px;
+      background: white;
+      padding: 3px;
+    }
+    .brand-name {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: white;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .hero {
+      background: rgba(196, 180, 233, 0.9);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #fff;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin: 15px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background: #4b2a77;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #37215a;
+    }
+
+    /* Secciones */
+    section {
+      background: white;
+      margin: 20px auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    section h2 {
+      color: #4b2a77;
+      margin-bottom: 15px;
+    }
+    section img.logo-mini {
+      width: 70px;
+      margin: 15px auto;
+      display: block;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .section-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      padding: 5px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #f0e9ff;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form input[type="submit"] {
+      background: #4b2a77;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Pie */
+    footer {
+      background: #4b2a77;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    footer img {
+      width: 60px;
+      display: block;
+      margin: 0 auto 10px auto;
+    }
+    .social img {
+      width: 40px;
+      margin: 0 10px;
+    }
+
+    /* Botón flotante WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 2000;
+      transition: transform 0.2s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+    .whatsapp-float img {
+      width: 35px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+      nav a {
+        margin: 8px 0;
+      }
+      .brand-name {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado con logo -->
+  <header>
+    <div class="logo-container">
+      <a href="#inicio">
+        <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-header">
+      </a>
+      <span class="brand-name">Pirorecuerdos</span>
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#valores">Valores</a>
+      <a href="#compromiso">Compromiso</a>
+      <a href="#innovacion">Innovación</a>
+      <a href="#calidad">Calidad</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contáctanos</a>
+      <!-- 🔗 Nuevo enlace -->
+      <a href="nosotros-historia.html" target="_blank">Historia Completa</a>
+    </nav>
+  </header>
+
+  <!-- Hero principal -->
+  <div class="hero" id="inicio">
+    <h1>PIRORECUERDOS</h1>
+    <p>El arte de lo que somos, transformando recuerdos en obras únicas</p>
+    <a href="#nosotros" class="btn">Saber más</a>
+    <a href="#contacto" class="btn">Contáctanos</a>
+    <!-- 🔗 Botón adicional al Hero -->
+    <a href="nosotros-historia.html" class="btn" target="_blank">Ver Historia Completa</a>
+  </div>
+
+  <!-- Quiénes somos -->
+  <section id="nosotros">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>¿Quiénes Somos?</h2>
+    <p>
+      Somos una empresa con un objetivo que va más allá de vender un producto: 
+      buscamos dar vida y significado a materiales desechados. 
+      A través del reciclaje, transformamos basura en recuerdos con valor sentimental, 
+      demostrando que de lo simple puede nacer algo hermoso. 
+      Además, contribuimos al ecosistema y generamos un ciclo sostenible.
+    </p>
+    <img src="img/pirograbado1.jpg" alt="Pirograbado en madera" class="section-img">
+  </section>
+
+  <!-- Valores -->
+  <section id="valores">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>Nuestros Valores</h2>
+    <ul>
+      <li>🌱 Compromiso con el medio ambiente</li>
+      <li>🎨 El reciclaje transformado en arte</li>
+      <li>💜 Diseño de calidad, cumplimiento y corazón</li>
+    </ul>
+    <img src="img/valores.jpg" alt="Manos trabajando en madera" class="section-img">
+  </section>
+
+  <!-- Compromiso -->
+  <section id="compromiso">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>Compromiso</h2>
+    <p>
+      En Pirorecuerdos nos comprometemos a crear productos de alta calidad que reflejen dedicación y detalle. 
+      Usamos los mejores materiales y técnicas innovadoras para garantizar obras únicas y duraderas. 
+      Ponemos el alma en cada diseño, buscando siempre superar las expectativas de nuestros clientes.
+    </p>
+    <img src="img/compromiso.jpg" alt="Diseños en madera" class="section-img">
+  </section>
+
+  <!-- Innovación -->
+  <section id="innovacion">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>Innovación</h2>
+    <p>
+      Nuestros profesionales combinan arte tradicional con tecnología avanzada como el grabado láser y 
+      diseño asistido por computadora. Esto nos permite crear piezas precisas, personalizadas y auténticas 
+      que se ajustan a las necesidades de cada cliente. Innovamos constantemente para ofrecer los mejores diseños.
+    </p>
+    <img src="img/innovacion.jpg" alt="Grabado láser en madera" class="section-img">
+  </section>
+
+  <!-- Calidad -->
+  <section id="calidad">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>Calidad</h2>
+    <p>
+      Cada pirograbado es creado con dedicación, técnicas tradicionales y materiales de primera. 
+      Nos enfocamos en la atención al detalle y en la pasión por el arte, lo que asegura que cada pieza 
+      sea única, resistente y de gran valor estético.
+    </p>
+    <img src="img/calidad.jpg" alt="Pirograbado de alta calidad" class="section-img">
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>Servicios</h2>
+    <table>
+      <tr>
+        <th>Servicio</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+      </tr>
+      <tr>
+        <td>Cuadro madera</td>
+        <td>Tamaño pequeño</td>
+        <td>$30.000</td>
+      </tr>
+      <tr>
+        <td>Cuadro madera</td>
+        <td>Tamaño mediano</td>
+        <td>$48.000</td>
+      </tr>
+      <tr>
+        <td>Cuadro madera</td>
+        <td>Tamaño grande</td>
+        <td>$60.000</td>
+      </tr>
+      <tr>
+        <td>Cuadro plástico</td>
+        <td>Tamaño pequeño</td>
+        <td>$25.000</td>
+      </tr>
+      <tr>
+        <td>Cuadro plástico</td>
+        <td>Tamaño mediano</td>
+        <td>$35.000</td>
+      </tr>
+      <tr>
+        <td>Cuadro plástico</td>
+        <td>Tamaño grande</td>
+        <td>$45.000</td>
+      </tr>
+    </table>
+    <img src="img/servicios.jpg" alt="Productos en madera pirograbada" class="section-img">
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos" class="logo-mini">
+    <h2>Contáctanos</h2>
+    <p>Correo: <a href="mailto:pirorecuerdos@gmail.com">pirorecuerdos@gmail.com</a></p>
+    <div class="social">
+      <a href="https://wa.me/573102536428" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/piro_recuerdos_09" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+      </a>
+    </div>
+    <form>
+      <label>Nombre:</label>
+      <input type="text" required>
+      <label>Correo:</label>
+      <input type="email" required>
+      <label>Teléfono:</label>
+      <input type="text">
+      <label>Mensaje:</label>
+      <textarea required></textarea>
+      <input type="submit" value="Enviar">
+    </form>
+  </section>
+
+  <!-- Pie -->
+  <footer>
+    <img src="5ff74d37-f92e-48fd-9010-43639b579dbe.jpeg" alt="Logo Pirorecuerdos">
+    <p>&copy; 2025 Pirorecuerdos - Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573102536428" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+
+</body>
+</html>
